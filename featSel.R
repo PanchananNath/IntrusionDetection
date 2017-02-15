@@ -1,1 +1,5 @@
-KDDTrain_20Percent=KDDTrain_20Percent[c(4,5,6,12,26,29,30,37,42)]
+cfs(X42~. , KDDTrain_20Percent)
+
+random.forest.importance(X42~. , KDDTrain_20Percent , importance.type = 1)
+
+bor=Boruta(factor(X42)~. , KDDTrain_20Percent)
