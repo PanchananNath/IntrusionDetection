@@ -17,7 +17,7 @@ KDDTest_21$X4 = numer(KDDTest_21$X4)
 KDDTest_21$X42 = numer(KDDTest_21$X42)
 
 for(i in 1:nrow(KDDTest_21))
-  if((KDDTest_21$X42[i]== 1 ||KDDTest_21$X42[i]== 2||KDDTest_21$X42[i]== 15|| KDDTest_21$X42[i]== 20||KDDTest_21$X42[i]== 28||KDDTest_21$X42[i]== 32 || KDDTest_21$X42[i]== 33 || KDDTest_21$X42[i]== 22 ||KDDTest_21$X42[i]== 35 || KDDTest_21$X42[i]== 9))
+  if((KDDTest_21$X42[i]== 1 ||KDDTest_21$X42[i]== 2||KDDTest_21$X42[i]== 15|| KDDTest_21$X42[i]== 20||KDDTest_21$X42[i]== 28||KDDTest_21$X42[i]== 32 || KDDTest_21$X42[i]== 33 || KDDTest_21$X42[i]== 22 ||KDDTest_21$X42[i]== 35 || KDDTest_21$X42[i]== 9 || KDDTest_21$X42[i]== 11))
     KDDTest_21$X42[i]=1
 
 
@@ -36,7 +36,7 @@ for(i in 1:nrow(KDDTest_21))
     KDDTest_21$X42[i]=4
 
 for(i in 1:nrow(KDDTest_21))
-  if((KDDTest_21$X42[i]== 12))
+  if((KDDTest_21$X42[i]== 17))
     KDDTest_21$X42[i]=5
 
 KDDTest_21=KDDTest_21[-43]
