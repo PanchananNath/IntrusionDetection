@@ -18,25 +18,25 @@ KDDTrain_20Percent$X42 = numer(KDDTrain_20Percent$X42)
 
 for(i in 1:nrow(KDDTrain_20Percent))
   if((KDDTrain_20Percent$X42[i]== 1 ||KDDTrain_20Percent$X42[i]== 7||KDDTrain_20Percent$X42[i]== 10|| KDDTrain_20Percent$X42[i]== 14||KDDTrain_20Percent$X42[i]== 18||KDDTrain_20Percent$X42[i]== 20))
-    KDDTrain_20Percent$X42[i]=1
+    KDDTrain_20Percent$X42[i]=101
 
 
 for(i in 1:nrow(KDDTrain_20Percent))
   if((KDDTrain_20Percent$X42[i]== 17 ||KDDTrain_20Percent$X42[i]== 6||KDDTrain_20Percent$X42[i]== 11|| KDDTrain_20Percent$X42[i]== 15))
-    KDDTrain_20Percent$X42[i]=2
+    KDDTrain_20Percent$X42[i]=102
 
 for(i in 1:nrow(KDDTrain_20Percent))
   if((KDDTrain_20Percent$X42[i]== 4 ||KDDTrain_20Percent$X42[i]== 3||KDDTrain_20Percent$X42[i]== 5|| KDDTrain_20Percent$X42[i]== 13||  KDDTrain_20Percent$X42[i]== 9 ||  KDDTrain_20Percent$X42[i]== 22 ||  KDDTrain_20Percent$X42[i]== 21 ||  KDDTrain_20Percent$X42[i]== 19))
-    KDDTrain_20Percent$X42[i]=3
+    KDDTrain_20Percent$X42[i]=103
 
 
 
 for(i in 1:nrow(KDDTrain_20Percent))
   if((KDDTrain_20Percent$X42[i]== 2||KDDTrain_20Percent$X42[i]== 8||KDDTrain_20Percent$X42[i]== 16))
-    KDDTrain_20Percent$X42[i]=4
+    KDDTrain_20Percent$X42[i]=104
 
 for(i in 1:nrow(KDDTrain_20Percent))
   if((KDDTrain_20Percent$X42[i]== 12))
-    KDDTrain_20Percent$X42[i]=5
+    KDDTrain_20Percent$X42[i]=105
 
 KDDTrain_20Percent=KDDTrain_20Percent[-43]
