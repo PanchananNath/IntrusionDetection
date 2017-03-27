@@ -6,6 +6,7 @@
 #
 
 library(shiny)
+library(compare)
 library(readr)
 library(class)
 library("nnet", lib.loc="/usr/lib/R/library")
@@ -80,7 +81,14 @@ shinyServer(function(input, output) {
     
     return(read_csv(inFile$datapath,col_names = FALSE))
   })
-
+  
+  click<-reactive({
+    clic<<-as.numeric(input$random)
+    print(clic)
+    return(clic)
+    
+  }
+  )
   output$text1 <- renderText({ 
   data()
   })
@@ -94,14 +102,39 @@ shinyServer(function(input, output) {
   })
 
   
+  
   data <- eventReactive(input$go, {paste("You have selected", input$cl)})
   data1 <- eventReactive(input$go, 
     
-    {t<-test()
+    {
+      t<-test()
+    cli<-click()
+    print("haha")
+    print(cli)
+ 
+   #print(isTRUE(all.equal(cli,val)))
+   #print(identical(cli,val,FALSE,FALSE,FALSE,FALSE))
+    if(cli != 0)
+    {
+      rndm <- sample(1:nrow(t), 1)
+      print(rndm)
+      #rndm <- sample(1:nrow(t), 1)
+      t<-t[rndm,]
+      print(t)
+      #assign("t", rndm, .GlobalEnv)
+     
+    }
+    else
+    {
+      t<-test()
+     
+    }
+   
       if(input$cl=="Random Forest Classifier"){
       
       my_modelRF <- readRDS("RFmodel.rds")
       start.time <- Sys.time()
+     
       rfpred=predict(my_modelRF,t)
       end.time <- Sys.time()
       time.taken <<- end.time - start.time
