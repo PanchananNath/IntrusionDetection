@@ -1,4 +1,3 @@
-
 # This is the user-interface definition of a Shiny web application.
 # You can find out more about building applications with Shiny here:
 #
@@ -8,7 +7,7 @@
 library(shiny)
 
 shinyUI(fluidPage(
-
+  tags$head(tags$script(HTML('Shiny.addCustomMessageHandler("jsCode",function(message) {eval(message.value);});'))),
   # Application title
   titlePanel("Cyberthreat Detection"),
 
@@ -22,7 +21,7 @@ shinyUI(fluidPage(
         
         fileInput(inputId="file", label = h3("File input")),
         
-        helpText("Choose a random packet from selected file input")
+        helpText("Choose random packets from selected file input")
         
         
       ),
