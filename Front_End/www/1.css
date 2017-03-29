@@ -1,0 +1,11 @@
+body {
+    background-color: black;
+}
+.radioSelect .radio {
+  font-size:56%;
+  color:gray;
+  
+}
+.right{
+  text-align:center;
+}
