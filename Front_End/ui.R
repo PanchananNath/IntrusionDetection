@@ -7,10 +7,12 @@
 library(shiny)
 
 shinyUI(fluidPage(
-  tags$head(tags$script(HTML('Shiny.addCustomMessageHandler("jsCode",function(message) {eval(message.value);});'))),
+  tags$head(tags$script(HTML('Shiny.addCustomMessageHandler("jsCode",function(message) {eval(message.value);});')),tags$link(rel = "stylesheet", type = "text/css", href = "1.css")),
   # Application title
-  titlePanel("Cyberthreat Detection"),
-
+ titlePanel(div(HTML("<em style='color:red'>Cyberthreat Detection</em> "))),
+tags$br(),
+tags$br(),
+tags$br(),
   fluidRow(
     # Sidebar with a slider input for number of bins
     
@@ -33,17 +35,18 @@ shinyUI(fluidPage(
       # ),
       # Show a plot of the generated distribution
       mainPanel(
-        radioButtons(inputId="cl", label = h3("Choose Classifier",style="color:red"),
-                     choices = list("kNN" = "KNN Classifier","Naive Bayes"="Naive Bayes Classifier","SVM" = "SVM Classifier",
-                                    "Decision Tree" = "Decision Tree Classifier", "Random Forest" = "Random Forest Classifier"),selected = 1),
+        
+       tags$h1(class="radioSelect",radioButtons(inputId="cl", label = h3("Choose Classifier",style="color:green"),
+                            choices = list("kNN" = "KNN Classifier","Naive Bayes"="Naive Bayes Classifier","SVM" = "SVM Classifier",
+                                           "Decision Tree" = "Decision Tree Classifier", "Random Forest" = "Random Forest Classifier"),selected = 1)) ,
         #plotOutput("distPlot")
         actionButton(inputId = "go",
                      label = "Update")
         
         
-        ,tags$hr(),textOutput("text1"),tags$hr(),
-        tags$h3(textOutput("text2"),style="color:green"),tags$br(),
-        tags$h4(textOutput("text3"),style="color:green")
+        ,tags$hr(),tags$h5(textOutput("text1"),style="color:#ffffcc"),tags$hr(),
+        tags$h3(textOutput("text2"),style="color:green",class='right'),tags$br(),
+        tags$h4(textOutput("text3"),style="color:green",class='right')
         #textOutput("acc")
       )
     )
