@@ -86,12 +86,14 @@ shinyServer(function(input, output, session) {
                              start.time <- Sys.time()
                              
                              rfpred=predict(my_modelRF,t)
+                            
+                             end.time <- Sys.time()
+                             
                              output$plot1 <- renderPlot({
                                
                                barplot(table(t$X42), names.arg = c("DoS", "Probing","R2L","U2R","Normal"), main = "Attack types in given set of packets", xlab = "Attack types", ylab ="No of instances" )
                                
                              })
-                             end.time <- Sys.time()
                              time.taken <<- end.time - start.time
                              rfAcc=sum(rfpred==t$X42)/nrow(t)
                              #print(cli)
@@ -108,33 +110,42 @@ shinyServer(function(input, output, session) {
                                  if(rfpred!=500)
                                    
                                  {
-                                   my_slider_check_test <- "The packet is Malicious!!"
-                                   js_string <- 'confirm("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   #my_slider_check_test <- "The packet is Malicious!!"
+                                   #js_string <- 'confirm("SOMETHING");'
+                                   #js_string <- sub("SOMETHING",my_slider_check_test,js_string)
+                                   #session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   if(rfpred==100)
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - DOS!\nSeverity level 2")
+                                   }
+                                   else if(rfpred==200)
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - Probe!\nSeverity level 5")
+                                   }
+                                   else if(rfpred==300)
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - R2L!\nSeverity level 7")
+                                   }
+                                   else
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - U2R!\nSeverity level 8")
+                                   }
                                  }
                                  else
                                  {
-                                   my_slider_check_test <- "Normal packet!!"
-                                   js_string <- 'confirm("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   paste("The packet is Normal!!!")
                                  }
                                  
                                }
                                else
                                {
-                                 print(rfpred)
-                                 print(t$X42)
-                                 my_slider_check_test <- "Packet wrongly classified :)!!"
-                                 js_string <- 'confirm("SOMETHING");'
-                                 js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                 session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                 paste("The packet is wrongly classified!!!")
                                }
                                
                              }
                              else
                              {
+                               
                                paste("Accuracy is",rfAcc*100,"%")
                                
                              }
@@ -166,28 +177,36 @@ shinyServer(function(input, output, session) {
                                  if(svmpred!=500)
                                    
                                  {
-                                   my_slider_check_test <- "The packet is Malicious!!"
-                                   js_string <- 'alert("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   
+                                   if(svmpred==100)
+                                   {
+                                      paste("The packet is Malicious !!\n Attack type - DOS!\nSeverity level 2")
+                                   }
+                                   else if(svmpred==200)
+                                   {
+                                      paste("The packet is Malicious !!\n Attack type - R2L!\nSeverity level 7")
+                                   }
+                                   else if(svmpred==300)
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - R2L!\nSeverity level 7")
+                                   }
+                                   else
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - U2R!\nSeverity level 8")
+                                   }
+                                  # my_slider_check_test <- "The packet is Malicious!!"
+                                  # js_string <- 'alert("SOMETHING");'
+                                   #session$sendCustomMessage(type='jsCode', list(value = js_string))
                                  }
                                  else
                                  {
-                                   my_slider_check_test <- "Normal packet!!"
-                                   js_string <- 'alert("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   paste("The packet is Normal!!!")
                                  }
                                  
                                }
                                else
                                {
-                                 print(svmpred)
-                                 print(t$X42)
-                                 my_slider_check_test <- "Packet wrongly classified :)!!"
-                                 js_string <- 'alert("SOMETHING");'
-                                 js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                 session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                 paste("The packet is wrongly classified!!!")
                                }
                                
                              }
@@ -224,28 +243,36 @@ shinyServer(function(input, output, session) {
                                  if(treepred!=500)
                                    
                                  {
-                                   my_slider_check_test <- "The packet is Malicious!!"
-                                   js_string <- 'alert("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   if(treepred==100)
+                                   {
+                                      paste("The packet is Malicious !!\n Attack type - DOS!\nSeverity level 2")
+                                   }
+                                   else if(treepred==200)
+                                   {
+                                      paste("The packet is Malicious !!\n Attack type - R2L!\nSeverity level 7")
+                                   }
+                                   else if(treepred==300)
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - R2L!\nSeverity level 7")
+                                   }
+                                   else
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - U2R!\nSeverity level 8")
+                                   }
+                                 #  my_slider_check_test <- "The packet is Malicious!!"
+                                  # js_string <- 'alert("SOMETHING");'
+                                  # js_string <- sub("SOMETHING",my_slider_check_test,js_string)
+                                   #session$sendCustomMessage(type='jsCode', list(value = js_string))
                                  }
                                  else
                                  {
-                                   my_slider_check_test <- "Normal packet!!"
-                                   js_string <- 'alert("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   paste("The packet is Normal!!!")
                                  }
                                  
                                }
                                else
                                {
-                                 print(treepred)
-                                 print(t$X42)
-                                 my_slider_check_test <- "Packet wrongly classified :)!!"
-                                 js_string <- 'alert("SOMETHING");'
-                                 js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                 session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                 paste("The packet is wrongly classified!!!")
                                }
                                
                              }
@@ -282,28 +309,36 @@ shinyServer(function(input, output, session) {
                                  if(naivepred!=500)
                                    
                                  {
-                                   my_slider_check_test <- "The packet is Malicious!!"
-                                   js_string <- 'alert("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   if(naivepred==100)
+                                   {
+                                      paste("The packet is Malicious !!\n Attack type - DOS!\nSeverity level 2")
+                                   }
+                                   else if(naivepred==200)
+                                   {
+                                      paste("The packet is Malicious !!\n Attack type - R2L!\nSeverity level 7")
+                                   }
+                                   else if(naivepred==300)
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - R2L!\nSeverity level 7")
+                                   }
+                                   else
+                                   {
+                                     paste("The packet is Malicious !!\n Attack type - U2R!\nSeverity level 8")
+                                   }
+                                  # my_slider_check_test <- "The packet is Malicious!!"
+                                   #js_string <- 'alert("SOMETHING");'
+                                   #js_string <- sub("SOMETHING",my_slider_check_test,js_string)
+                                   #session$sendCustomMessage(type='jsCode', list(value = js_string))
                                  }
                                  else
                                  {
-                                   my_slider_check_test <- "Normal packet!!"
-                                   js_string <- 'alert("SOMETHING");'
-                                   js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                   session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                   paste("The packet is Normal!!!")
                                  }
                                  
                                }
                                else
                                {
-                                 print(naivepred)
-                                 print(t$X42)
-                                 my_slider_check_test <- "Packet wrongly classified :)!!"
-                                 js_string <- 'alert("SOMETHING");'
-                                 js_string <- sub("SOMETHING",my_slider_check_test,js_string)
-                                 session$sendCustomMessage(type='jsCode', list(value = js_string))
+                                 paste("The packet is wrongly classified!!!")
                                }
                                
                              }
@@ -337,5 +372,4 @@ shinyServer(function(input, output, session) {
   
   
 })
-
 
