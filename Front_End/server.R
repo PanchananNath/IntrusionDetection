@@ -86,6 +86,11 @@ shinyServer(function(input, output, session) {
                              start.time <- Sys.time()
                              
                              rfpred=predict(my_modelRF,t)
+                             output$plot1 <- renderPlot({
+                               
+                               barplot(table(t$X42), names.arg = c("DoS", "Probing","R2L","U2R","Normal"), main = "Attack types in given set of packets", xlab = "Attack types", ylab ="No of instances" )
+                               
+                             })
                              end.time <- Sys.time()
                              time.taken <<- end.time - start.time
                              rfAcc=sum(rfpred==t$X42)/nrow(t)
@@ -131,6 +136,7 @@ shinyServer(function(input, output, session) {
                              else
                              {
                                paste("Accuracy is",rfAcc*100,"%")
+                               
                              }
                              
                              
@@ -140,6 +146,11 @@ shinyServer(function(input, output, session) {
                              start.time <- Sys.time()
                              svmpred=predict(my_modelSVM,t)
                              end.time <- Sys.time()
+                             output$plot1 <- renderPlot({
+                               
+                               barplot(table(t$X42), names.arg = c("DoS", "Probing","R2L","U2R","Normal"), main = "Attack types in given set of packets", xlab = "Attack types", ylab ="No of instances" )
+                               
+                             })
                              time.taken <<- end.time - start.time
                              svmAcc=sum(svmpred==t$X42)/nrow(t)
                              
@@ -183,6 +194,7 @@ shinyServer(function(input, output, session) {
                              else
                              {
                                paste("Accuracy is",svmAcc*100,"%")
+                               
                              }
                              
                              
@@ -192,6 +204,11 @@ shinyServer(function(input, output, session) {
                              start.time <- Sys.time()
                              treepred=predict(my_modeltree,newdata=t,type = c("class"))
                              end.time <- Sys.time()
+                             output$plot1 <- renderPlot({
+                               
+                               barplot(table(t$X42), names.arg = c("DoS", "Probing","R2L","U2R","Normal"), main = "Attack types in given set of packets", xlab = "Attack types", ylab ="No of instances" )
+                               
+                             })
                              time.taken <<- end.time - start.time
                              treeTest=sum(treepred==t$X42)/nrow(t)
                              if(cli!=0)
@@ -245,6 +262,11 @@ shinyServer(function(input, output, session) {
                              start.time <- Sys.time()
                              naivepred=predict(my_modelnaive,t,threshold = 0.1,type="class")
                              end.time <- Sys.time()
+                             output$plot1 <- renderPlot({
+                               
+                               barplot(table(t$X42), names.arg = c("DoS", "Probing","R2L","U2R","Normal"), main = "Attack types in given set of packets", xlab = "Attack types", ylab ="No of instances" )
+                               
+                             })
                              time.taken <<- end.time - start.time
                              #paste("Time taken : ",time.taken)
                              naiveAcc=sum(naivepred==t$X42)/nrow(t)

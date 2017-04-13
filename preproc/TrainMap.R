@@ -37,6 +37,6 @@ for(i in 1:nrow(KDDTrain_20Percent))
 
 for(i in 1:nrow(KDDTrain_20Percent))
   if((KDDTrain_20Percent$X42[i]== 12))
-    KDDTrain_20Percent$X42[i]=105
+    KDDTrain_20Percent$X42[i]="normal"
 
 KDDTrain_20Percent=KDDTrain_20Percent[-43]
